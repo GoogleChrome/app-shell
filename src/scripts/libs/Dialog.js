@@ -16,12 +16,9 @@
  */
 
 export default function DialogInstance() {
-  if (typeof window.DialogInstance_ !== 'undefined') {
-    return Promise.resolve(window.DialogInstance_);
+  if (typeof window.DialogInstance_ === 'undefined') {
+    window.DialogInstance_ = new Dialog();
   }
-
-  window.DialogInstance_ = new Dialog();
-
   return Promise.resolve(window.DialogInstance_);
 }
 
