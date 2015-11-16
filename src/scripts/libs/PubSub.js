@@ -16,12 +16,9 @@
  */
 
 export default function PubSubInstance() {
-  if (typeof window.PubSubInstance_ !== 'undefined') {
-    return Promise.resolve(window.PubSubInstance_);
+  if (typeof window.PubSubInstance_ === 'undefined') {
+    window.PubSubInstance_ = new PubSub();
   }
-
-  window.PubSubInstance_ = new PubSub();
-
   return Promise.resolve(window.PubSubInstance_);
 }
 

@@ -18,12 +18,9 @@
 export default class RouterSingleton {
 
   static getRouter() {
-    if (typeof window.RouterInstance_ !== 'undefined') {
-      return window.RouterInstance_;
+    if (typeof window.RouterInstance_ === 'undefined') {
+      window.RouterInstance_ = new Router();
     }
-
-    window.RouterInstance_ = new Router();
-
     return window.RouterInstance_;
   }
 

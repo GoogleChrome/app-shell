@@ -16,12 +16,9 @@
 
 export default class ToasterSingleton {
   static getToaster() {
-    if (typeof window.ToasterInstance_ !== 'undefined') {
-      return window.ToasterInstance_;
+    if (typeof window.ToasterInstance_ === 'undefined') {
+      window.ToasterInstance_ = new Toaster();
     }
-
-    window.ToasterInstance_ = new Toaster();
-
     return window.ToasterInstance_;
   }
 }
