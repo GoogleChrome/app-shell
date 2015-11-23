@@ -1,6 +1,10 @@
 export default class NavDrawerView {
 
   constructor() {
+    this.styleTransform = 'webkitTransform';
+    if (!(this.styleTransform in document.documentElement.style)) {
+      this.styleTransform = 'transform';
+    }
     this.rootElement = document.querySelector('.js-side-nav');
     this.sideNavContent = this.rootElement
       .querySelector('.js-side-nav-content');
@@ -20,7 +24,7 @@ export default class NavDrawerView {
         e.preventDefault();
       }
 
-      this.sideNavContent.style.transform =
+      this.sideNavContent.style[this.styleTransform] =
         'translateX(' + sideNavTransform + 'px)';
     };
 
@@ -58,7 +62,7 @@ export default class NavDrawerView {
   close() {
     this.rootElement.classList.remove('side-nav--visible');
     this.sideNavContent.classList.add('side-nav__content--animatable');
-    this.sideNavContent.style.transform = 'translateX(-102%)';
+    this.sideNavContent.style[this.styleTransform] = 'translateX(-102%)';
   }
 
   open() {
@@ -80,7 +84,7 @@ export default class NavDrawerView {
           onSideNavTransitionEnd);
 
     requestAnimationFrame( () => {
-      this.sideNavContent.style.transform = 'translateX(0px)';
+      this.sideNavContent.style[this.styleTransform] = 'translateX(0px)';
     });
   }
 
