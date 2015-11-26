@@ -36,7 +36,10 @@ gulp.task('service-worker', function(cb) {
       GLOBAL.config.dest + '/manifest.json'
     ],
     dynamicUrlToDependencies: {
-      '/app-shell': ['server/views/layouts/app-shell.handlebars'],
+      '/app-shell': [
+        'server/views/layouts/app-shell.handlebars',
+        GLOBAL.config.dest + '/styles/core.css'
+      ],
       '/api/': [
         'server/views/index.handlebars'
       ],
@@ -50,5 +53,9 @@ gulp.task('service-worker', function(cb) {
     stripPrefix: GLOBAL.config.dest,
     navigateFallback: '/app-shell',
     cacheId: packageName
-  }).then(cb);
+  })
+  .then(cb)
+  .catch(() => {
+    cb();
+  });
 });
