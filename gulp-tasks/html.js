@@ -30,5 +30,5 @@ gulp.task('html', function() {
     ])
     .pipe(gulpif(GLOBAL.config.env == 'prod', minifyHtml()))
     .pipe(replace(/@VERSION@/g, GLOBAL.config.version))
-    .pipe(gulp.dest(config.dest));
+    .pipe(gulp.dest(GLOBAL.config.dest));
 });
